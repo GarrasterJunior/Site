@@ -1,0 +1,27 @@
+body {
+    background-color: #000000;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.abertura {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .abertura img {
+    animation: spin 2s linear infinite;
+    max-width: 50%;
+    max-height: 80%;
+    pointer-events: none;
+    width: auto;
+    height: auto;
+    margin: auto;
+  }
+  
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

@@ -1,0 +1,102 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="dados.css">
+    </head>
+    <body>
+        <div class="logo">
+            <a href="./images/BMO_2.png" class="logo2" onclick="location.reload(); return false;">
+                <a href="index.html"><img src="./images/BMO_3.png" alt="Logotipo escrito BMO" class="logo2">
+                </a>
+            </a>
+            
+        </div>
+        <div class="dados">
+            <form class="formulario" action="submit.php" method="post" onsubmit="return validarFormulario()">
+                <div>
+                  <label for="nome">Nome:</label>
+                  <input type="text" id="nome" name="nome" maxlength="50" required>
+                </div>
+                <div>
+                  <label for="email">Email:</label>
+                  <input type="email" id="email" name="email" maxlength="100" required>
+                </div>
+                <div>
+                  <label for="telefone">Telefone:</label>
+                  <input type="tel" id="telefone" name="telefone" pattern="[0-9]{10,11}" required>
+                </div>
+                <input type="submit" value="Enviar">
+              </form>
+              <div id="popup" class="popup">
+                <div class="popup-content">
+                    <span class="popup-close" onclick="closePopup(); location.replace('dados.html')"">&times;</span>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+        function validarFormulario() {
+            event.preventDefault()
+
+        const nome = document.getElementById('nome');
+        const email = document.getElementById('email');
+        const telefone = document.getElementById('telefone');
+
+    if (nome.value.trim() === '') {
+            alert('Por favor, preencha o campo Nome.');
+            nome.focus();
+            return false;
+        }
+
+        const nomeRegExp = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]{3,}$/;
+        if (!nomeRegExp.test(nome.value.trim())) {
+            const mensagem = 'Erro no nome'
+            openPopup(mensagem);
+            nome.focus();
+            return false;
+        }
+        if (email.value.trim() === '') {
+            alert('Por favor, preencha o campo Email.');
+            email.focus();
+            return false;
+        }
+
+        const emailRegExp = /^\S+@\S+\.\S+$/;
+        if (!emailRegExp.test(email.value.trim())) {
+            const mensagem = 'Erro no email'
+            openPopup(mensagem);
+            email.focus();
+            return false;
+        }
+
+        if (telefone.value.trim() === '') {
+            alert('Por favor, preencha o campo Telefone.');
+            telefone.focus();
+            return false;
+        }
+
+        const telefoneRegExp = /^\d{11}$/;
+        if (!telefoneRegExp.test(telefone.value.trim())) {
+            const mensagem = 'Erro no telefone'
+            openPopup(mensagem);
+            telefone.focus();
+            return false;
+        }
+        openPopup("Entraremos em contato em breve");
+        return true
+    }
+        function openPopup(mensagem) {
+            const popup = document.getElementById('popup');
+            popup.querySelector('p').textContent = mensagem;
+            popup.style.display = 'block';
+}
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+    }
+
+
+        </script>
+    </body>
+    
+</html>
